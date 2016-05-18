@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>陪琦琦打地鼠</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+          font-size: 12px;
+          background-color: rgba(159, 206, 108, 0.98);
+          margin: auto;
+          max-width: 414px;
+          overflow: hidden;
+          height: 100%
+        }
+        .title{
+          margin: 50px 0 0 10px;
+          font-size: 14px;
+          color: #000;
+          line-height: 25px
+        }
+        .title b{
+          font-size: 30px
+        }
+        .number{
+          margin: 25px 10px;
+          overflow: hidden;
+        }
+        .number div{
+          height: 100px;
+          background-color: rgb(245, 240, 146);
+          text-align: center;
+          font-size: 20px;
+          line-height: 100px;
+          border-radius: 10px;
+          float: left;
+
+        }
+        .number .left{
+          width: 48%;
+          margin-right: 4%;
+        }
+        .number .right{
+          width: 48%;
+        }
+        .number .left span{
+          color: rgb(245, 6, 6)
+        }
+        .farm{
+          width: 92%;
+          height: 100%;
+          padding: 30px 10px 10px;
+          overflow: hidden;
+          margin: 4%;
+          background-image: url(images/bg.jpg);
+          background-size: 100%;
+          border-radius: 10px
+        }
+        .hole {
+            width: 60px;
+            height: 60px;
+            margin: 0 28px 20px 0;
+            background-image: url(images/dong.png);
+            background-size: 100%;
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            position: relative;
+        }
+        .hole em{
+          font-size: 20px;
+          color: #fff;
+          position: absolute;
+          right: -10px;
+          top: -30px;
+          font-style: normal;
+          font-weight: bold;
+          background-color: rgb(252, 4, 4);
+          width: 40px;
+          height: 25px;
+          display: inline-block;
+          text-align: center;
+          line-height: 25px;
+          z-index: 1;
+        }
+        .out{
+          background-image: url(images/shu.png);
+          background-size: 100%;
+        }
+        .pia{
+          background-image: url(images/chui.cur);
+          /*background-position: 0 -5px*/
+
+        }
+        .dead{
+          background-image: url(images/pia.png);
+        }
+        .btns{
+          height: 50px;
+          line-height: 50px;
+          width: 100%;
+          background: rgb(28, 28, 29);
+          color: #fff;
+          max-width: 414px;
+          text-align: center;
+          position: fixed;
+          bottom: 0;
+          font-size: 20px;
+          border: 0
+        }
+
+</style>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+<script src="http://lab.cubiq.org/iscroll5/build/iscroll.js"></script>
+<script src="fastclick.js"></script>
+
+<script>
+  $(function(){
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);//禁止屏幕滚动
+    FastClick.attach(document.body)//清除手机端的延迟300毫秒
+    var daojishi = 0,time1,time2,score = 0,suiji,hamster,hamsterlength
+    // function outStart(){
+    //   suiji = Math.floor(Math.random()*3)
+    //   if(suiji == 0){
+    //     $('.hole').removeClass('out')
+    //     hh()
+    //   }else if(suiji == 1){
+    //     $('.hole').removeClass('out')
+    //     hh()
+    //     setTimeout(hamster,300)
+    //   }else{
+    //     $('.hole').removeClass('out')
+    //     hh()
+    //     setTimeout(hamster,300)
+    //     setTimeout(hamster,600)
+    //   }
+    // }
+    function hamster(){
+      suiji = Math.floor(Math.random() * $('.hole').length)
+      $('.hole').eq(suiji).addClass("out")
+    }
+    //地鼠出现判断个数
+    function outStart(){
+      hamsterlength = Math.floor(Math.random()*4)
+      for(var i = 0; i < hamsterlength; i++){
+        $('.hole').removeClass('out')
+        hamster()
+        setTimeout(hamster,30)
+      }
+    }
+    //倒计时
+    $('.btns').click(function(){
+      daojishi = 60
+      time1 = setInterval(outStart,600)
+      $(this).css('backgroundColor','#ccc').prop('disabled',true)
+      time2= setInterval(Countdown,1000)
+      score = 0
+      //鼠标点击地鼠执行的操作
+      $('.hole').click(function(){
+        if($(this).hasClass('out')){
+          $(this).addClass('dead')
+          $(this).append('<em>+10</em>')
+          setInterval(function(){
+            $('.hole').removeClass("dead")
+            $('em').remove()
+          }, 500)
+          $(this).removeClass('out')
+          score = score += 10
+        }else{
+          $(this).addClass('pia')
+          setInterval(function(){
+            $('.hole').removeClass("pia")
+          }, 500)
+        }
+        $('.number span').html(score)
+      })
+      function Countdown(){
+        daojishi --
+        $('.number .right').html(daojishi + '秒')
+        if(daojishi == 0){
+          $('.btns').css('backgroundColor','rgb(28, 28, 29)').prop('disabled',false)
+          $('.btns').html('再战一次')
+          $('.hole').removeClass('out')
+          clearInterval(time1)
+          clearInterval(time2)
+        }
+      }
+    })
+  })
+</script>
+</head>
+<body>
+  <div class="title"><b>疯狂打地鼠！</b><br/>听说智商高的人才能拿高分(*^__^*) 嘻嘻</div>
+  <div class="number">
+    <div class="left">当前分数:
+    <span>0</span>
+  </div>
+  <div class="right">60秒</div>
+  </div>
+  <div class="farm">
+    <div class="hole" ></div>
+    <div class="hole" ></div>
+    <div class="hole" ></div>
+    <div class="hole" style="margin-right: 0"></div>
+    <div class="hole" ></div>
+    <div class="hole" ></div>
+    <div class="hole" ></div>
+    <div class="hole" style="margin-right: 0"></div>
+    <div class="hole" ></div>
+    <div class="hole" ></div>
+    <div class="hole" ></div>
+    <div class="hole" style="margin-right: 0"></div>
+  </div>
+  <button class="btns">Ready Go!</button>
+</body>
+</html>
