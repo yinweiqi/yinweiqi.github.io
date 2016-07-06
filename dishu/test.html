@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>陪琦琦打地鼠</title>
+</head>
+<body>
+<style>
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+  }
+  body {
+    font-size: 12px;
+    margin: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    overflow: hidden;
+    height: 100%
+  }
+  input{
+    margin-right:10px
+  }
+</style>
+<script src="vue.js"></script>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+
+<div style="margin: 100px">
+   <input type="checkbox" value="1" />1
+   <input type="checkbox" value="2" />2
+   <input type="checkbox" value="3" />3
+   <input type="checkbox" value="4" />4
+   <input type="checkbox" value="5" />5
+</div>
+<p style="search_action">当前选择项之和:<span>0</span><span style="margin-left: 10px">0</span></p>
+<span>Message is: {{ message }}</span>
+<br>
+<input type="text" v-model="message" placeholder="edit me">
+
+<script>
+new Vue({
+el: 'span',
+data: {
+  message: 'Hello Vue.js!'
+}
+})
+  // $('input').change(event, function(){
+  //   var sum = 0,
+  //       str = '',
+  //       fuhao = '';
+  //   var selected = $('input:checked').each(function() {
+  //     sum +=  parseInt($(this).val())
+  //   })
+  //   if($(event.target).prop('checked')){
+  //     fuhao = '+';
+  //   }else{
+  //     fuhao = '-';
+  //   }
+  //   str =  $(event.target).val()
+  //   $('span').eq(0).html(sum)
+  //   $('span').eq(1).html(fuhao + str)
+  //
+  // })
+
+
+
+
+  $(function(){
+    // function num(sun,num2){
+    //   return sun(num2)
+    // }
+    // function sun(num1){
+    //   return num1+10
+    // }
+    // console.info(num(sun,10))
+  })
+  // var name = "李四", age = 18
+  // function test(){
+  //     console.info(this);
+  //     console.info(this.name);
+  //     console.info(this.age);
+  // };
+  // test();
+  // var obj = {name: "李四", age: 20};
+  // test.apply(obj);
+
+
+</script>
+
+</body>
+</html>
