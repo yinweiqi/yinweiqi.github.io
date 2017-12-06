@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<script src="jquery.js"></script>
+<title>陪琦琦打地鼠</title>
+<style>
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+  }
+  body {
+    font-size: 12px;
+    margin: auto;
+    max-width: 414px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    overflow: hidden;
+    height: 100%
+  }
+  .warp{
+    width: 80%;
+    margin: 10% auto;
+    height: 500px;
+    position: relative;
+    display: none;
+    animation: rotate 4s linear infinite;
+    transform-origin: 50%;
+  }
+  .box{
+    width: 100px;
+    height: 50px;
+    border-radius: 200px 0;
+    position: absolute;
+    left: 49%;
+    top: 50%;
+    margin: -50px 0 0 -25px
+  }
+  .box1{
+    background: linear-gradient(to right, #a11e24, #c31820, #db0716, #e5421f);
+    transform: rotate(40deg);
+    top: 59%;
+    animation: show 2s linear alternate
+  }
+  .box2{
+    background: linear-gradient(to right, #db0817, #e1431c, #e97d18, #f4b100);
+    transform: rotate(100deg);
+    top: 66%;
+    left: 38%;
+    animation: show 3s linear alternate
+  }
+  .box3{
+    background: linear-gradient(to right, #1b2d6b, #812688, #7d298b, #c05b9f);
+    transform: rotate(150deg);
+    top: 65%;
+    left: 25%;
+    animation: show 4s linear alternate
+  }
+  .box4{
+    background: linear-gradient(to right, #073d89, #0a459b, #0b64b2, #069ad9);
+    transform: rotate(200deg);
+    top: 57%;
+    left: 18%;
+    animation: show 5s linear alternate
+  }
+  .box5{
+    background: linear-gradient(to right, #00818f, #0b929a, #0c9bac, #4eb1c9);
+    transform: rotate(244deg);
+    top: 49%;
+    left: 22%;
+    animation: show 6s linear alternate
+  }
+  .box6{
+    background: linear-gradient(to right, #0dac48, #5ab530, #9dca29, #dce109);
+    transform: rotate(300deg);
+    top: 45%;
+    left: 35%;
+    animation: show 7s linear alternate
+  }
+  .box7{
+    background: linear-gradient(to right, #ea7d18, #ef9e06, #f9bc01, #f7d803);
+    animation: show 1s linear alternate
+  }
+  @keyframes show {
+    from {
+      width: 10px
+    }
+    to {
+      width: 100px
+    }
+  }
+  @keyframes rotate {
+    from {
+      transform: rotate(0);
+    }
+    to {
+    transform: rotate(360deg);
+    }
+  }
+
+</style>
+</head>
+<body>
+  <div class="warp">
+    <div class="box box7"></div>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <div class="box box4"></div>
+    <div class="box box5"></div>
+    <div class="box box6"></div>
+  </div>
+  <div class="show">show</div>
+<script>
+  $('.show').click(function(){
+    $('.warp').fadeIn()
+  })
+</script>
+</body>
+</html>
